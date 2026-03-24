@@ -44,14 +44,14 @@ export default function FinancePanel() {
     e.preventDefault();
     if (!numeroContrato) return;
     setLoading(true);
-    
+
     try {
       const { data, error } = await supabase
         .from("contratos")
         .select("cliente, producto, fecha_contrato")
         .eq("numero_contrato", numeroContrato)
         .single();
-      
+
       if (data && !error) {
         setCliente(data.cliente);
         setProducto(data.producto as "Credit" | "Finance");
@@ -63,7 +63,7 @@ export default function FinancePanel() {
       // Mock data if Supabase fails or table doesn't exist
       setCliente(83921020);
       setProducto("Finance");
-      setFechaContrato(15); 
+      setFechaContrato(15);
     }
     setLoading(false);
   };
@@ -115,13 +115,13 @@ export default function FinancePanel() {
       const fv = producto === "Finance" ? pagoFinal : 0;
 
       const basePmt = pmt(rateMonthly, plazoRestante, pv, fv);
-      
+
       let finalPmt = basePmt;
       if (seguroFinanciado && customMensualidad !== "") {
         const parsed = parseFloat(customMensualidad);
         if (!isNaN(parsed)) finalPmt = parsed;
       }
-      
+
       setNuevaMensualidad(finalPmt);
 
       try {
@@ -150,9 +150,9 @@ export default function FinancePanel() {
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans relative overflow-x-hidden p-4 md:p-10 flex flex-col items-center">
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-fuchsia-600/10 rounded-full blur-[140px] pointer-events-none" />
-      
+
       <div className="max-w-6xl w-full flex flex-col gap-6 relative z-10">
-        
+
         {/* Header */}
         <header className="flex items-center gap-4 mb-4">
           <div className="p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20 shadow-lg">
@@ -163,7 +163,7 @@ export default function FinancePanel() {
               Abonos a Capital
             </h1>
             <p className="text-slate-400 text-sm md:text-base mt-2 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400"/> Gestión avanzada de amortizaciones y cálculo de rentabilidad.
+              <ShieldCheck className="w-4 h-4 text-emerald-400" /> Gestión avanzada de amortizaciones y cálculo de rentabilidad.
             </p>
           </div>
         </header>
@@ -198,15 +198,15 @@ export default function FinancePanel() {
 
           <div className="flex-[1.5] grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div className="bg-slate-950/40 border border-slate-800/80 p-5 rounded-2xl shadow-inner flex flex-col justify-center">
-              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><Fingerprint className="w-4 h-4 text-indigo-400"/> Cliente</div>
+              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><Fingerprint className="w-4 h-4 text-indigo-400" /> Cliente</div>
               <div className="text-2xl font-mono text-slate-200">{cliente || "—"}</div>
             </div>
             <div className="bg-slate-950/40 border border-slate-800/80 p-5 rounded-2xl shadow-inner flex flex-col justify-center">
-              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><FileText className="w-4 h-4 text-emerald-400"/> Producto</div>
+              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><FileText className="w-4 h-4 text-emerald-400" /> Producto</div>
               <div className="text-2xl font-mono text-slate-200">{producto || "—"}</div>
             </div>
             <div className="bg-slate-950/40 border border-slate-800/80 p-5 rounded-2xl shadow-inner flex flex-col justify-center col-span-2 sm:col-span-1">
-              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 text-amber-400"/> Día de Corte</div>
+              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 text-amber-400" /> Día de Corte</div>
               <div className="text-2xl font-mono text-slate-200">{fechaContrato !== null ? fechaContrato : "—"}</div>
             </div>
           </div>
@@ -216,27 +216,27 @@ export default function FinancePanel() {
         <section className="bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 p-6 md:p-8 rounded-3xl shadow-2xl">
           <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <label className={`flex items-center gap-3 p-4 rounded-2xl border ${adeudos ? 'border-red-500/50 bg-red-500/10' : 'border-slate-800/80 bg-slate-950/40'} cursor-pointer transition-all`}>
-              <input type="checkbox" className="w-5 h-5 rounded accent-red-500 bg-slate-900 border-slate-700 cursor-pointer" checked={adeudos} onChange={(e) => setAdeudos(e.target.checked)}/>
+              <input type="checkbox" className="w-5 h-5 rounded accent-red-500 bg-slate-900 border-slate-700 cursor-pointer" checked={adeudos} onChange={(e) => setAdeudos(e.target.checked)} />
               <span className={`text-base font-bold ${adeudos ? 'text-red-400' : 'text-slate-300'}`}>¿Tiene Adeudos?</span>
             </label>
             <label className={`flex items-center gap-3 p-4 rounded-2xl border ${planApoyo ? 'border-blue-500/50 bg-blue-500/10' : 'border-slate-800/80 bg-slate-950/40'} cursor-pointer transition-all`}>
-              <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-slate-900 border-slate-700 cursor-pointer" checked={planApoyo} onChange={(e) => setPlanApoyo(e.target.checked)}/>
+              <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-slate-900 border-slate-700 cursor-pointer" checked={planApoyo} onChange={(e) => setPlanApoyo(e.target.checked)} />
               <span className={`text-base font-bold ${planApoyo ? 'text-blue-400' : 'text-slate-300'}`}>Plan de Apoyo</span>
             </label>
             <label className={`flex items-center gap-3 p-4 rounded-2xl border ${ajustes ? 'border-blue-500/50 bg-blue-500/10' : 'border-slate-800/80 bg-slate-950/40'} cursor-pointer transition-all`}>
-              <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-slate-900 border-slate-700 cursor-pointer" checked={ajustes} onChange={(e) => setAjustes(e.target.checked)}/>
+              <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-slate-900 border-slate-700 cursor-pointer" checked={ajustes} onChange={(e) => setAjustes(e.target.checked)} />
               <span className={`text-base font-bold ${ajustes ? 'text-blue-400' : 'text-slate-300'}`}>Ajustes Pendientes</span>
             </label>
             <label className={`flex items-center gap-3 p-4 rounded-2xl border ${seguroFinanciado ? 'border-fuchsia-500/50 bg-fuchsia-500/10' : 'border-blue-900/30 bg-blue-950/20'} cursor-pointer transition-all hover:bg-fuchsia-900/20`}>
-              <input type="checkbox" className="w-5 h-5 rounded accent-fuchsia-500 bg-slate-900 border-slate-700 cursor-pointer" checked={seguroFinanciado} onChange={(e) => setSeguroFinanciado(e.target.checked)}/>
+              <input type="checkbox" className="w-5 h-5 rounded accent-fuchsia-500 bg-slate-900 border-slate-700 cursor-pointer" checked={seguroFinanciado} onChange={(e) => setSeguroFinanciado(e.target.checked)} />
               <span className={`text-base font-bold ${seguroFinanciado ? 'text-fuchsia-400' : 'text-blue-200'}`}>Seguro Financiado</span>
             </label>
           </div>
 
           <div className="mb-6 flex flex-col gap-2 bg-fuchsia-900/10 p-6 rounded-2xl border border-fuchsia-500/20 relative">
-            <div className="absolute top-0 left-0 w-2 h-full bg-fuchsia-500 rounded-l-2xl"/>
+            <div className="absolute top-0 left-0 w-2 h-full bg-fuchsia-500 rounded-l-2xl" />
             <label className="text-sm font-bold text-fuchsia-300 uppercase tracking-widest flex items-center gap-2 mb-2 ml-4">
-              <Coins className="w-5 h-5"/> Monto del Abono a Capital
+              <Coins className="w-5 h-5" /> Monto del Abono a Capital
             </label>
             <div className="relative ml-4">
               <span className="absolute left-5 top-1/2 -translate-y-1/2 text-fuchsia-400 font-bold text-3xl">$</span>
@@ -267,7 +267,7 @@ export default function FinancePanel() {
                 <input type="number" step="1000" className="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl py-4 pl-10 pr-5 focus:ring-2 focus:ring-blue-500 outline-none transition-all font-mono text-xl text-slate-100 shadow-inner" value={pagoFinal || ""} onChange={numInput(setPagoFinal)} />
               </div>
             </div>
-            
+
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Mensualidad Línea del Auto</label>
               <div className="relative">
@@ -295,10 +295,10 @@ export default function FinancePanel() {
         {/* Section 3: Messages */}
         <div className="flex flex-col gap-3">
           {adeudos && (
-             <div className="flex items-center justify-center p-6 rounded-2xl bg-red-600/20 border-2 border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.3)] animate-pulse">
-                <AlertTriangle className="w-10 h-10 text-red-500 mr-4 shrink-0" />
-                <h2 className="text-2xl font-black text-red-500 uppercase tracking-widest text-center shadow-red-500">EL CLIENTE NO DEBE TENER ADEUDOS</h2>
-             </div>
+            <div className="flex items-center justify-center p-6 rounded-2xl bg-red-600/20 border-2 border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.3)] animate-pulse">
+              <AlertTriangle className="w-10 h-10 text-red-500 mr-4 shrink-0" />
+              <h2 className="text-2xl font-black text-red-500 uppercase tracking-widest text-center shadow-red-500">EL CLIENTE NO DEBE TENER ADEUDOS</h2>
+            </div>
           )}
           {!adeudos && errorList.map((err, i) => (
             <div key={`err-${i}`} className="flex items-start gap-4 p-5 rounded-2xl border-l-4 border-red-500 bg-red-950/40 shadow-lg text-red-200 backdrop-blur-md">
@@ -317,7 +317,7 @@ export default function FinancePanel() {
         {/* Section 4: Results */}
         <section className={`transition-all duration-700 ease-out overflow-hidden ${errorList.length === 0 && montoAbono > 0 && cliente ? 'opacity-100 translate-y-0' : 'opacity-40 grayscale pointer-events-none translate-y-4'}`}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-slate-700/50 shadow-2xl bg-slate-900/40 backdrop-blur-xl group">
-            
+
             {/* Left Col: Rates & Rules */}
             <div className="p-8 md:p-10 flex flex-col gap-8 bg-gradient-to-br from-slate-900/80 to-slate-950/80">
               <h3 className="text-xl font-black text-slate-100 uppercase tracking-widest border-b border-slate-700/50 pb-4">Indicadores Calculados</h3>
@@ -328,7 +328,7 @@ export default function FinancePanel() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <span className="text-blue-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                    Effective Rate <Info className="w-3 h-3"/>
+                    Effective Rate <Info className="w-3 h-3" />
                   </span>
                   <span className="text-3xl font-mono text-blue-300 font-bold drop-shadow-[0_2px_10px_rgba(59,130,246,0.3)]">
                     {effectiveRate > 0 ? effectiveRate.toFixed(5) : '0.00000'}%
@@ -348,19 +348,19 @@ export default function FinancePanel() {
             {/* Right Col: Output Mensuality */}
             <div className="p-8 md:p-10 flex flex-col gap-8 relative bg-gradient-to-br from-blue-900/20 to-fuchsia-900/10">
               <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-700/50 to-transparent hidden lg:block" />
-              
+
               <h3 className="text-xl font-black text-slate-100 uppercase tracking-widest border-b border-slate-700/50 pb-4">Resumen de Ejecución</h3>
-              
+
               <div className="bg-slate-950/60 p-6 rounded-2xl border border-blue-500/30 shadow-[inset_0_2px_20px_rgba(0,0,0,0.5)]">
                 <label className="text-xs font-bold text-blue-300 uppercase tracking-widest flex items-center justify-between mb-4">
                   <span>Nueva Mensualidad Auto</span>
                   {seguroFinanciado && <span className="bg-fuchsia-500 text-white font-bold text-[10px] px-2 py-1 rounded-sm tracking-wider uppercase">Entrada Manual</span>}
                 </label>
-                
+
                 <div className="relative">
                   <span className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-3xl">$</span>
                   {seguroFinanciado ? (
-                    <input 
+                    <input
                       type="number"
                       step="0.01"
                       className="w-full bg-slate-900 border-2 border-fuchsia-500/60 rounded-xl py-5 pl-12 pr-5 focus:ring-4 focus:ring-fuchsia-500/30 outline-none transition-all font-mono text-4xl font-bold text-white shadow-[0_0_20px_rgba(217,70,239,0.2)]"
@@ -369,7 +369,7 @@ export default function FinancePanel() {
                       onChange={(e) => setCustomMensualidad(e.target.value)}
                     />
                   ) : (
-                    <input 
+                    <input
                       type="text"
                       readOnly
                       className="w-full bg-transparent border-none rounded-xl py-5 pl-12 pr-5 outline-none font-mono text-4xl font-bold text-white drop-shadow-md"
@@ -384,7 +384,7 @@ export default function FinancePanel() {
                   <span className="text-slate-400 text-sm font-semibold">Seguro Financiado</span>
                   <span className={`font-bold uppercase tracking-wider text-sm ${seguroFinanciado ? 'text-fuchsia-400' : 'text-slate-500'}`}>{seguroFinanciado ? "Activado" : "Inactivo"}</span>
                 </div>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-slate-400 text-sm font-semibold">Servicios Adicionales</span>
                   <span className="font-semibold font-mono text-slate-300">$0.00</span>
@@ -403,12 +403,12 @@ export default function FinancePanel() {
 
         {/* Footer info block */}
         <footer className="mt-12 text-center bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 flex items-center justify-center gap-4 w-full backdrop-blur-md shadow-2xl">
-           <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0">
-             <AlertTriangle className="w-6 h-6 text-amber-500"/>
-           </div>
-           <span className="text-slate-200 font-semibold tracking-wide text-left">
-             Nota Importante: Si deposita sin cotización previa, comunicarse al CAC.
-           </span>
+          <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0">
+            <AlertTriangle className="w-6 h-6 text-amber-500" />
+          </div>
+          <span className="text-slate-200 font-semibold tracking-wide text-left">
+            Nota Importante: Si deposita sin cotización previa, comunicarse al CAC.
+          </span>
         </footer>
 
       </div>
