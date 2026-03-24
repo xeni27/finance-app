@@ -190,10 +190,11 @@ export default function FinancePanel() {
     fechaCorte, fechaFinContrato, tasaInteresSeguro, montoFinanciadoSeguro
   ]);
 
+  // Se calcular effectiveRate por separado porque su scope es reactivo con finalPmt y plazos.
   useEffect(() => {
-    if (montoAbono > 0 && plazoRestanteAuto > 0 && nuevaMensualidadAuto > 0 && errorList.length === 0) {
+    if (montoAbono > 0 && plazoRestanteAuto > 0 && nuevaMensualidadTotal > 0 && errorList.length === 0) {
       try {
-        const rateResMonthly = calculateRate(plazoRestanteAuto, nuevaMensualidadAuto, -(saldoCustomer + montoAbono), pagoFinal);
+        const rateResMonthly = calculateRate(plazoRestanteAuto, nuevaMensualidadTotal, -(saldoCustomer + montoAbono), pagoFinal);
         const effectiveAnnual = rateResMonthly * 12 * 100;
         setEffectiveRate(effectiveAnnual);
       } catch (e) {
@@ -202,7 +203,7 @@ export default function FinancePanel() {
     } else {
       setEffectiveRate(0);
     }
-  }, [nuevaMensualidadAuto, plazoRestanteAuto, saldoCustomer, montoAbono, pagoFinal, errorList.length]);
+  }, [nuevaMensualidadTotal, plazoRestanteAuto, saldoCustomer, montoAbono, pagoFinal, errorList.length]);
 
   const numInput = (setter: React.Dispatch<React.SetStateAction<number>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseFloat(e.target.value);
@@ -257,6 +258,7 @@ export default function FinancePanel() {
             <div className="mt-6 flex flex-wrap gap-4 pt-4 border-t border-slate-800">
               <span className="text-sm font-bold text-slate-400">Cliente: <span className="text-indigo-300 ml-1">{cliente}</span></span>
               <span className="text-sm font-bold text-slate-400">Producto: <span className="text-emerald-300 ml-1">{producto}</span></span>
+              <span className="text-sm font-bold text-slate-400">Día Corte Contrato: <span className="text-amber-300 ml-1">{fechaContrato !== null ? fechaContrato : "—"}</span></span>
             </div>
           )}
         </section>
