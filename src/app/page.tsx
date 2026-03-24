@@ -213,7 +213,7 @@ export default function FinancePanel() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans relative overflow-x-hidden p-6 md:p-12 flex flex-col items-center">
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-fuchsia-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl w-full flex flex-col gap-8 relative z-10">
 
@@ -223,7 +223,7 @@ export default function FinancePanel() {
             <Calculator className="w-8 h-8 text-blue-400" />
           </div>
           <div>
-            <h1 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-fuchsia-400 tracking-tight pb-1">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-400 tracking-tight pb-1">
               Abonos a Capital
             </h1>
           </div>
@@ -277,9 +277,9 @@ export default function FinancePanel() {
             <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-slate-900 border-slate-700 cursor-pointer" checked={ajustes} onChange={(e) => setAjustes(e.target.checked)} />
             <span className={`text-sm font-bold ${ajustes ? 'text-blue-400' : 'text-slate-300'}`}>Ajustes Pendientes</span>
           </label>
-          <label className={`flex items-center gap-3 p-4 rounded-2xl border ${seguroFinanciadoCheck ? 'border-fuchsia-500/50 bg-fuchsia-500/10' : 'border-slate-800/80 bg-slate-900/40'} cursor-pointer transition-all`}>
-            <input type="checkbox" className="w-5 h-5 rounded accent-fuchsia-500 bg-slate-900 border-slate-700 cursor-pointer" checked={seguroFinanciadoCheck} onChange={(e) => setSeguroFinanciadoCheck(e.target.checked)} />
-            <span className={`text-sm font-bold ${seguroFinanciadoCheck ? 'text-fuchsia-400' : 'text-blue-200'}`}>Editar Mensualidad Manual</span>
+          <label className={`flex items-center gap-3 p-4 rounded-2xl border ${seguroFinanciadoCheck ? 'border-blue-500/50 bg-blue-500/10' : 'border-slate-800/80 bg-slate-900/40'} cursor-pointer transition-all`}>
+            <input type="checkbox" className="w-5 h-5 rounded accent-blue-500 bg-slate-900 border-slate-700 cursor-pointer" checked={seguroFinanciadoCheck} onChange={(e) => setSeguroFinanciadoCheck(e.target.checked)} />
+            <span className={`text-sm font-bold ${seguroFinanciadoCheck ? 'text-blue-400' : 'text-blue-200'}`}>Editar Mensualidad Manual</span>
           </label>
         </div>
 
@@ -306,7 +306,7 @@ export default function FinancePanel() {
 
         {/* SECTION 2: INPUTS MANUALES */}
         <section className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 p-6 md:p-8 rounded-3xl shadow-xl">
-          <h2 className="text-lg font-black text-fuchsia-400 uppercase tracking-widest mb-6 border-b border-slate-800 pb-3 flex items-center gap-2">
+          <h2 className="text-lg font-black text-blue-400 uppercase tracking-widest mb-6 border-b border-slate-800 pb-3 flex items-center gap-2">
             <Coins className="w-5 h-5" /> Inserción de Datos (Manual)
           </h2>
 
@@ -427,13 +427,13 @@ export default function FinancePanel() {
           {/* SECTION 5: MENSUALIDADES Y SERVICIOS */}
           <section className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 p-6 rounded-3xl shadow-xl lg:col-span-2">
             <h2 className="text-sm font-black text-slate-300 uppercase tracking-widest mb-4 border-b border-slate-800 pb-3 flex items-center gap-2">
-              <DollarSign className="w-4 h-4 text-fuchsia-400" /> Mensualidades y Servicios
+              <DollarSign className="w-4 h-4 text-blue-400" /> Mensualidades y Servicios
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="bg-blue-950/30 p-4 rounded-xl border border-blue-900/50">
                 <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block mb-1">Nueva Mensualidad Auto</span>
                 {seguroFinanciadoCheck ? (
-                  <input type="number" step="0.01" className="w-full bg-slate-950 border border-fuchsia-500/50 rounded-lg p-2 font-mono text-xl focus:outline-none" value={customMensualidad} onChange={(e) => setCustomMensualidad(e.target.value)} placeholder={nuevaMensualidadAuto.toFixed(2)} />
+                  <input type="number" step="0.01" className="w-full bg-slate-950 border border-blue-500/50 rounded-lg p-2 font-mono text-xl focus:outline-none" value={customMensualidad} onChange={(e) => setCustomMensualidad(e.target.value)} placeholder={nuevaMensualidadAuto.toFixed(2)} />
                 ) : (
                   <span className="text-2xl font-mono text-white">${nuevaMensualidadAuto.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 )}
@@ -446,8 +446,8 @@ export default function FinancePanel() {
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1">Servicios Adicionales</span>
                 <span className="text-2xl font-mono text-slate-200">${serviciosAdicionales.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
               </div>
-              <div className="bg-fuchsia-950/30 p-4 rounded-xl border border-fuchsia-900/50">
-                <span className="text-[10px] font-bold text-fuchsia-400 uppercase tracking-widest block mb-1">Nueva Mensualidad TOTAL</span>
+              <div className="bg-blue-950/30 p-4 rounded-xl border border-blue-900/50">
+                <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block mb-1">Nueva Mensualidad TOTAL</span>
                 <span className="text-2xl font-mono text-white font-bold">${nuevaMensualidadTotal.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
               </div>
             </div>
