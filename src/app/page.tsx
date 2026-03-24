@@ -206,7 +206,7 @@ export default function FinancePanel() {
               <div className="text-2xl font-mono text-slate-200">{producto || "—"}</div>
             </div>
             <div className="bg-slate-950/40 border border-slate-800/80 p-5 rounded-2xl shadow-inner flex flex-col justify-center col-span-2 sm:col-span-1">
-              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 text-amber-400" /> Día de Corte</div>
+              <div className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 text-amber-400" /> Fecha Corte del Contrato</div>
               <div className="text-2xl font-mono text-slate-200">{fechaContrato !== null ? fechaContrato : "—"}</div>
             </div>
           </div>
