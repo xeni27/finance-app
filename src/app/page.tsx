@@ -184,9 +184,9 @@ export default function FinancePanel() {
       setFechaLimitePago("-");
     }
   }, [
-    adeudos, planApoyo, ajustes, seguroFinanciadoCheck, tasaOriginal, 
-    saldoFinancing, saldoCustomer, mensualidadLineaAuto, mensualidadTotal, 
-    pagoFinal, montoAbono, cliente, producto, fechaContrato, customMensualidad, 
+    adeudos, planApoyo, ajustes, seguroFinanciadoCheck, tasaOriginal,
+    saldoFinancing, saldoCustomer, mensualidadLineaAuto, mensualidadTotal,
+    pagoFinal, montoAbono, cliente, producto, fechaContrato, customMensualidad,
     fechaCorte, fechaFinContrato, tasaInteresSeguro, montoFinanciadoSeguro
   ]);
 
@@ -215,7 +215,7 @@ export default function FinancePanel() {
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-fuchsia-600/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl w-full flex flex-col gap-8 relative z-10">
-        
+
         {/* HEADER */}
         <header className="flex items-center gap-4 border-b border-slate-800/80 pb-6">
           <div className="p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20 shadow-lg">
@@ -223,7 +223,7 @@ export default function FinancePanel() {
           </div>
           <div>
             <h1 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-fuchsia-400 tracking-tight pb-1">
-              Simulador de Abonos a Capital
+              Abonos a Capital
             </h1>
           </div>
         </header>
@@ -307,7 +307,7 @@ export default function FinancePanel() {
           <h2 className="text-lg font-black text-fuchsia-400 uppercase tracking-widest mb-6 border-b border-slate-800 pb-3 flex items-center gap-2">
             <Coins className="w-5 h-5" /> Inserción de Datos (Manual)
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="flex flex-col gap-2 bg-slate-950/50 p-4 rounded-2xl border border-slate-800">
               <label className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Monto a abonar</label>
@@ -367,7 +367,7 @@ export default function FinancePanel() {
 
         {/* Contenedor de Múltiples Secciones Inferiores */}
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 transition-opacity duration-500 ${errorList.length === 0 && montoAbono > 0 && cliente ? 'opacity-100' : 'opacity-40 grayscale pointer-events-none'}`}>
-          
+
           {/* SECTION 3: RESULTADOS CALCULADOS */}
           <section className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 p-6 rounded-3xl shadow-xl">
             <h2 className="text-sm font-black text-slate-300 uppercase tracking-widest mb-4 border-b border-slate-800 pb-3 flex items-center gap-2">
@@ -431,7 +431,7 @@ export default function FinancePanel() {
               <div className="bg-blue-950/30 p-4 rounded-xl border border-blue-900/50">
                 <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block mb-1">Nueva Mensualidad Auto</span>
                 {seguroFinanciadoCheck ? (
-                  <input type="number" step="0.01" className="w-full bg-slate-950 border border-fuchsia-500/50 rounded-lg p-2 font-mono text-xl focus:outline-none" value={customMensualidad} onChange={(e) => setCustomMensualidad(e.target.value)} placeholder={nuevaMensualidadAuto.toFixed(2)}/>
+                  <input type="number" step="0.01" className="w-full bg-slate-950 border border-fuchsia-500/50 rounded-lg p-2 font-mono text-xl focus:outline-none" value={customMensualidad} onChange={(e) => setCustomMensualidad(e.target.value)} placeholder={nuevaMensualidadAuto.toFixed(2)} />
                 ) : (
                   <span className="text-2xl font-mono text-white">${nuevaMensualidadAuto.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 )}
@@ -467,7 +467,7 @@ export default function FinancePanel() {
                   <span className="text-sm font-mono text-slate-200">{fechaLimitePago}</span>
                 </div>
               </div>
-              
+
               <div className="col-span-1 md:col-span-2 bg-blue-600/10 border-2 border-blue-500/50 rounded-2xl p-6 flex flex-col items-center justify-center shadow-[inset_0_0_20px_rgba(37,99,235,0.2)]">
                 <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em] mb-2">Referencia de Pago</span>
                 <span className="text-4xl md:text-5xl font-black font-mono tracking-[0.3em] text-white">
