@@ -132,7 +132,8 @@ export default function FinancePanel() {
       // EXCEL: Servicios Adicionales
       const pmtSeguro = pmt(tasaInteresSeguro / 100 / 12, computedPlazo, -montoFinanciadoSeguro, 0);
       const diffServicios = mensualidadTotal - pmtSeguro - mensualidadLineaAuto;
-      const servAd = diffServicios < 5 ? (pmtSeguro + diffServicios) : pmtSeguro;
+      let servAd = diffServicios < 5 ? (pmtSeguro + diffServicios) : pmtSeguro;
+      if (servAd < 0) servAd = 0;
       setServiciosAdicionales(servAd);
 
       // EXCEL: Seguro Financiado
