@@ -112,6 +112,13 @@ export default function FinancePanel() {
     if (planApoyo || ajustes) errors.push("Restricción: El cliente tiene Plan de Apoyo o Ajustes Pendientes.");
     if (fechaContrato !== null && fechaContrato <= 0) errors.push("Regla de Tiempo: No ha pasado la primera mensualidad.");
 
+    if (fechaCorte) {
+      const day = parseInt(fechaCorte.split('-')[2], 10);
+      if (![1, 8, 16, 22].includes(day)) {
+        errors.push("Restricción de Fecha: El día de corte solo puede ser el 1, 8, 16 o 22 de cada mes.");
+      }
+    }
+
     if (montoAbono > 0) {
       if (montoAbono < minAb) errors.push(`Regla de Monto Mínimo: El abono debe ser al menos el doble de la mensualidad total ($${minAb.toLocaleString("es-MX", { minimumFractionDigits: 2 })}).`);
       if (montoAbono > maxAb) errors.push(`Regla de Monto Máximo: El abono no debe superar el 90% del saldo insoluto del customer ($${maxAb.toLocaleString("es-MX", { minimumFractionDigits: 2 })}).`);
