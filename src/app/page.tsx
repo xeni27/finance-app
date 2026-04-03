@@ -166,9 +166,9 @@ export default function FinancePanel() {
         fd.setUTCMonth(fd.getUTCMonth() + 1);
         setFechaNuevaMensualidad(fd.toISOString().split('T')[0]);
 
-        // Mock fecha limite de pago (por ej +15 dias de la nueva)
-        const fl = new Date(fd);
-        fl.setUTCDate(fl.getUTCDate() + 15);
+        // Fecha límite de pago: 2 días antes de la fecha corte del abono
+        const fl = new Date(Date.UTC(dateParts[0], dateParts[1] - 1, dateParts[2]));
+        fl.setUTCDate(fl.getUTCDate() - 2);
         setFechaLimitePago(fl.toISOString().split('T')[0]);
       } else {
         setFechaNuevaMensualidad("-");
