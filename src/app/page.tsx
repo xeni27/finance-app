@@ -76,7 +76,7 @@ export default function FinancePanel() {
     } catch (err) {
       setCliente(83921020);
       setProducto("Finance");
-      setFechaContrato(15);
+      setFechaContrato(16);
       const futureDate = new Date();
       futureDate.setFullYear(futureDate.getFullYear() + 2);
       setPagoFinal(5000);
