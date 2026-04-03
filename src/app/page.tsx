@@ -115,9 +115,6 @@ export default function FinancePanel() {
     if (montoAbono > 0) {
       if (montoAbono < minAb) errors.push(`Regla de Monto Mínimo: El abono debe ser al menos el doble de la mensualidad total ($${minAb.toLocaleString("es-MX", { minimumFractionDigits: 2 })}).`);
       if (montoAbono > maxAb) errors.push(`Regla de Monto Máximo: El abono no debe superar el 90% del saldo insoluto del customer ($${maxAb.toLocaleString("es-MX", { minimumFractionDigits: 2 })}).`);
-      if (montoAbono < mensualidadLineaAuto * computedPlazo) {
-        infos.push("Las mensualidades aumentarán porque abono < suma de pagos programados futuros.");
-      }
     }
 
     setErrorList(errors);
