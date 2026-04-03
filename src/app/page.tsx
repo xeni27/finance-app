@@ -120,10 +120,10 @@ export default function FinancePanel() {
     setErrorList(errors);
     setInfoList(infos);
 
-    // REFERENCIA: digito sin guion
+    // REFERENCIA: digito fijo asociado al cliente
     if (cliente) {
-      const randomDigit = Math.floor(Math.random() * 10) + 1;
-      setReferencia(`${cliente}${randomDigit}`);
+      const fixedDigit = cliente % 10;
+      setReferencia(`${cliente}${fixedDigit}`);
     } else {
       setReferencia("");
     }
