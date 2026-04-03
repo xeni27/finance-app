@@ -322,7 +322,7 @@ export default function FinancePanel() {
             <div className="flex flex-col gap-2 bg-slate-950/50 p-4 rounded-2xl border border-slate-800">
               <label className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Fecha Corte del Abono</label>
               <div className="relative">
-                <input type="date" className="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 outline-none focus:border-blue-500 font-mono text-xl [color-scheme:dark]" value={fechaCorte} onChange={(e) => setFechaCorte(e.target.value)} />
+                <input type="date" min={new Date().toISOString().split('T')[0]} className="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 outline-none focus:border-blue-500 font-mono text-xl [color-scheme:dark]" value={fechaCorte} onChange={(e) => setFechaCorte(e.target.value)} />
               </div>
             </div>
 
